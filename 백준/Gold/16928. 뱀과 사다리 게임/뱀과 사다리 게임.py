@@ -15,13 +15,12 @@ for _ in range(M):
     snakes[u] = v
 
 q = deque([1])
-cnt = [0] * 101
 visited = [0] * 101
 
 while q:
     now = q.popleft()
     if now == 100:
-        print(cnt[100])
+        print(visited[100])
         break
     for n in range(1, 7):
         move = now + n
@@ -32,6 +31,5 @@ while q:
                 move = snakes[move]
 
             if not visited[move]:
-                visited[move] = 1
-                cnt[move] = cnt[now] + 1
+                visited[move] = visited[now] + 1
                 q.append(move)
