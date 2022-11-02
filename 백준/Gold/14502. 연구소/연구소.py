@@ -4,18 +4,24 @@ from collections import deque
 input = lambda: sys.stdin.readline().rstrip()
 
 
-def bfs(r, c, visited):
+def bfs(v, visited):
+    global max_cnt
+    temp = cnt
     dr = [-1, 1, 0, 0]
     dc = [0, 0, -1, 1]
-    que = deque([(r, c)])
+    que = deque(v)
     while que:
         nr, nc = que.popleft()
         for idx in range(4):
             tr = nr + dr[idx]
             tc = nc + dc[idx]
             if (0 <= tr < N) and (0 <= tc < M) and not visited[tr][tc]:
+                temp -= 1
+                if temp < max_cnt:
+                    return
                 visited[tr][tc] = 2
                 que.append((tr, tc))
+    max_cnt = temp
 
 
 def ncr(n, r, s, arr):
@@ -35,6 +41,7 @@ for _ in range(N):
 walls = []
 virus = []
 saves = []
+cnt = 0
 for i in range(N):
     for j in range(M):
         if board[i][j] == 1:
@@ -43,26 +50,18 @@ for i in range(N):
             virus.append((i, j))
         else:
             saves.append((i, j))
+            cnt += 1
 
 new_walls = []
 comb = [0, 0, 0]
 ncr(len(saves), 3, 0, saves)
 
+cnt -= 3
 max_cnt = 0
-delta = [(-1, 0), (1, 0), (0, -1), (0, 1)]
 for new_wall in new_walls:
     check = deepcopy(board)
     for i, j in new_wall:
         check[i][j] = 1
-    for row, col in virus:
-        bfs(row, col, check)
-
-    cnt = 0
-    for i in range(N):
-        for j in range(M):
-            if check[i][j] == 0:
-                cnt += 1
-    if max_cnt < cnt:
-        max_cnt = cnt
+    bfs(virus, check)
 
 print(max_cnt)
