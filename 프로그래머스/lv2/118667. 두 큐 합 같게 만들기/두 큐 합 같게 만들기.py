@@ -6,10 +6,10 @@ def solution(queue1, queue2):
     if (s1 + s2) % 2:
         answer = -1
     else:
-        L = len(queue1) * 4
+        L = len(queue1)
         queue1, queue2 = deque(queue1), deque(queue2)
         while True:
-            if L < answer:
+            if L * 3 < answer:
                 answer = -1
                 break
             if s1 == s2:
