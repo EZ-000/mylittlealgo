@@ -4,11 +4,9 @@ n = 0
 val = []
 answer = 1
 vis = [0] * (1 << 17)
-cnt = 0
+
 
 def sheep(s):
-    global cnt
-    cnt += 1
     global answer
     if vis[s]:
         return None
@@ -23,12 +21,12 @@ def sheep(s):
     answer = max(answer, vertex - wolf)
 
     for i in range(n):
-        if not s & (1 << i):
-            continue
-        if l[i] != -1:
-            sheep(s | (1 << l[i]))
-        if r[i] != -1:
-            sheep(s | 1 << r[i])
+        if s & (1 << i):
+            if l[i] != -1:
+                print(bin(s | (1 << l[i]))[2:])
+                sheep(s | (1 << l[i]))
+            if r[i] != -1:
+                sheep(s | 1 << r[i])
 
 
 def solution(info, edges):
@@ -42,3 +40,5 @@ def solution(info, edges):
             r[u] = v
     sheep(1)
     return answer
+
+# 참고: https://blog.encrypted.gg/1029
