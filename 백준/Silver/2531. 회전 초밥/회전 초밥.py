@@ -4,15 +4,36 @@ sushi_go_round = []
 for _ in range(N):
     sushi_go_round.append(int(input()))
 
-for i in range(k - 1):
-    sushi_go_round.append(sushi_go_round[i])
+count = 0
+yum_sushi = [0] * (d + 1)
+for sushi in sushi_go_round[:k]:
+    if not yum_sushi[sushi]:
+        count += 1
+    yum_sushi[sushi] += 1
 
-max_yum = set()
-for i in range(N + k - 2):
-    yum = set(sushi_go_round[i:i + k])
-    if c not in yum:
-        yum.add(c)
-    if len(max_yum) < len(yum):
-        max_yum = yum
+max_count = count
 
-print(len(max_yum))
+for i in range(k, N + k - 1):
+    if N - 1 < i:
+        i = i % N
+    pre_sushi = sushi_go_round[i - k]
+    now_sushi = sushi_go_round[i]
+
+    if not yum_sushi[now_sushi]:
+        count += 1
+    yum_sushi[now_sushi] += 1
+
+    yum_sushi[pre_sushi] -= 1
+    if not yum_sushi[pre_sushi]:
+        count -= 1
+
+    if not yum_sushi[c]:
+        count += 1
+
+    if max_count < count:
+        max_count = count
+
+    if not yum_sushi[c]:
+        count -= 1
+
+print(max_count)
