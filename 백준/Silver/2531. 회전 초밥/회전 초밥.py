@@ -1,3 +1,6 @@
+import sys
+input = sys.stdin.readline
+
 N, d, k, c = map(int, input().split())
 
 sushi_go_round = []
