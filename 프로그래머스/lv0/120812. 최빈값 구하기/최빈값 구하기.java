@@ -7,15 +7,15 @@ class Solution {
         }
         
         boolean flag = false;
-        int max_num = 0;
+        int maxNum = 0;
         int answer = -1;
         for (int i = 0; i < 1001; i++) {
-            if (max_num == visited[i]) {
+            if (maxNum == visited[i]) {
                 flag = true;
             }
-            if (max_num < visited[i]) {
+            if (maxNum < visited[i]) {
                 flag = false;
-                max_num = visited[i];
+                maxNum = visited[i];
                 answer = i;
             }
         }
