@@ -4,7 +4,6 @@ input = lambda: sys.stdin.readline().rstrip()
 
 
 def bfs(arr):
-    global min_num
     dr = [-1, 1, 0, 0]
     dc = [0, 0, -1, 1]
     visited = [[[0] * 2 for _ in range(M)] for _ in range(N)]
