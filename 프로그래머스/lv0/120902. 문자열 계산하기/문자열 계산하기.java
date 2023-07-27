@@ -5,7 +5,6 @@ class Solution {
         String[] items = myString.split(" ");
         
         int answer = Integer.parseInt(items[0]);
-        System.out.println(Arrays.toString(items));
         for (int index = 1; index < items.length; index += 2) {
             String op = items[index];
             switch (op) {
