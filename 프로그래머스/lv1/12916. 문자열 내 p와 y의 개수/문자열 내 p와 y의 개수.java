@@ -1,13 +1,12 @@
 class Solution {
     boolean solution(String s) {
-        int cntP = 0;
-        int cntY = 0;
+        int count = 0;
         
         for (int index = 0; index < s.length(); index++) {
-            if (s.charAt(index) == 'P' || s.charAt(index) == 'p') cntP += 1;
-            else if (s.charAt(index) == 'Y' || s.charAt(index) == 'y') cntY += 1;
+            if (s.charAt(index) == 'P' || s.charAt(index) == 'p') count += 1;
+            else if (s.charAt(index) == 'Y' || s.charAt(index) == 'y') count -= 1;
         }
 
-        return (cntP == cntY) ? true : false;
+        return (count == 0) ? true : false;
     }
 }
