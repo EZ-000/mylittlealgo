@@ -1,3 +1,4 @@
+# 1로 만들기
 import time
 start = time.time()
 
