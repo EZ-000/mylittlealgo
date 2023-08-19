@@ -1,11 +1,14 @@
-# 거스름돈
-N = int(input())
+# 큰 수의 법칙
+N, M, K = map(int, input().split())
+arr = list(map(int, input().split()))
+
+arr.sort()
 
 answer = 0
-coins = [500, 100, 50, 10]
-
-for coin in coins:
-    answer += N // coin
-    N %= coin
+for i in range(1, M + 1):
+    if i % 4 == 0:
+        answer += arr[-2]
+    else:
+        answer += arr[-1]
 
 print(answer)

@@ -1,8 +1,16 @@
-N, M = map(int, input().split())
-
+N, K = map(int, input().split())
 answer = 0
-for _ in range(N):
-    row = list(map(int, input().split()))
-    answer = max(answer, min(row))
 
+while True:
+    target = (N // K) * K
+    answer += (N - target)
+    N = target
+
+    if N < K:
+        break
+
+    answer += 1
+    N //= K
+
+answer += (N - 1)
 print(answer)

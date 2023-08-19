@@ -1,10 +1,13 @@
-N, M = map(int, input().split())
+N, K = map(int, input().split())
 
-cards = []
-for _ in range(N):
-    row = list(map(int, input().split()))
-    row.sort()
-    cards.append(row[0])
+count = 0
+while True:
+    if N == 1:
+        break
+    if N % K == 0:
+        N /= K
+    else:
+        N -= 1
+    count += 1
 
-cards.sort()
-print(cards[-1])
+print(count)
